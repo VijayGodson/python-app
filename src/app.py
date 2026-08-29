@@ -19,7 +19,7 @@ def details():
         'local_now' : datetime.datetime.now().astimezone(),
         'hostname': socket.gethostname(),
         'uptime': uptime_string,
-        'message': 'you are a good human@'
+        'message': 'you are a good human!!'
     })
 
 @app.route('/api/v1/healthz')
