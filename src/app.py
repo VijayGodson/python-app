@@ -9,9 +9,9 @@ app.json.sort_keys = False
 
 CONTAINER_START_TIME = os.path.getmtime('/proc/1')
 
-@app.route('/api/v1/details')
+@app.route('/api/v1/info')
 
-def details():
+def infor():
     uptime_seconds = int(time.time() - CONTAINER_START_TIME)
     uptime_string = str(datetime.timedelta(seconds=uptime_seconds))
 
@@ -19,7 +19,7 @@ def details():
         'local_now' : datetime.datetime.now().astimezone(),
         'hostname': socket.gethostname(),
         'uptime': uptime_string,
-        'message': 'you are a good human!'
+        'deployed on': 'kubernetes'
     })
 
 @app.route('/api/v1/healthz')
