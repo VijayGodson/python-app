@@ -40,8 +40,20 @@ jobs:
         shell: bash
         run: |
           echo 'updating with ${{ needs.ci.outputs.commit_id }}'
-          sudo apt-get update && sudo apt-get install python3-pip -y 
-          sudo pip install yq --break-system-packages 
+          if ! command -v pip3 &> /dev/nul; then
+            echo 'pip not found. Installing pip3'
+            sudo apt-get update && sudo apt-get install python3-pip -y
+          else
+            echo 'pip3 is already installed'
+          fi
+
+          if ! command yq &> /dev/null; then
+            echo 'yq not found. Installing yq'
+            sudo pip install yq --break-system-packages
+          else
+            echo 'yq is already installed'
+          fi
+
           yq -Yi '.image.tag = "${{ needs.ci.outputs.commit_id }}"' charts/python-app/values.yaml
 
       - name: commit changes
