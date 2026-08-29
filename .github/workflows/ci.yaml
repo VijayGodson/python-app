@@ -26,8 +26,8 @@ jobs:
           push: true
           tags: vijaygodson/python-app:${{ env.COMMIT_ID }}
 
-      outputs:
-        commit_id: ${{ env.COMMIT_ID }}
+    outputs:
+       commit_id: ${{ env.COMMIT_ID }}
 
   cd:
     needs: ci
