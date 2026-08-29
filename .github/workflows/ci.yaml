@@ -27,7 +27,7 @@ jobs:
           tags: vijaygodson/python-app:${{ env.COMMIT_ID }}
 
       outputs:
-        comit_id: ${{ env.COMMIT_ID }}
+        commit_id: ${{ env.COMMIT_ID }}
 
   cd:
     needs: ci
@@ -39,10 +39,10 @@ jobs:
       - name: modify values.yaml file for argocd
         shell: bash
         run: |
-          echo ${{needs.ci.outputs.commit_id}} \
-          apt-get update && sudo apt-get install python3-pip -y\
-          sudo pip install yq --break-system-packages \
-          yq -Yi '.image.tag = "${{needs.ci.outputs.commit_id}}"' charts/python-app/values.yaml
+          echo 'updating with ${{ needs.ci.outputs.commit_id }}'
+          apt-get update && sudo apt-get install python3-pip -y 
+          sudo pip install yq --break-system-packages 
+          yq -Yi '.image.tag = "${{ needs.ci.outputs.commit_id }}"' charts/python-app/values.yaml
 
       - name: commit changes
         uses: EndBug/add-and-commit@v9
@@ -52,8 +52,8 @@ jobs:
       - name: Install argocd-server
         shell: bash
         run: |
-          curl -ksSL -o argocd https://argocd-server.argocd/download/argocd-linux-amd64
-          chmod +x argocd
+          curl -ksSL -o argocd https://argocd-server.argocd/download/argocd-linux-amd64 \
+          chmod +x argocd \
           sudo mv ./argocd /usr/local/bin/argocd
 
       - name: Argocd App sync
