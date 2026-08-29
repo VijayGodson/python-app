@@ -40,7 +40,7 @@ jobs:
         shell: bash
         run: |
           echo 'updating with ${{ needs.ci.outputs.commit_id }}'
-          apt-get update && sudo apt-get install python3-pip -y 
+          sudo apt-get update && sudo apt-get install python3-pip -y 
           sudo pip install yq --break-system-packages 
           yq -Yi '.image.tag = "${{ needs.ci.outputs.commit_id }}"' charts/python-app/values.yaml
 
