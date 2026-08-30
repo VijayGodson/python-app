@@ -1,7 +1,7 @@
 site_name: 'Python-app'
 site_description: 'Main documentation for Python-app'
 repo_url: https://github.com/VijayGodson/python-app
-edit_uri: edit/main/Docs
+edit_uri: edit/main/docs
 
 plugins:
   - techdocs-core
@@ -12,4 +12,4 @@ plugins:
 # For sidebar navigation on https://backstage.io/, see `microsite/sidebars.js`
 nav:
   - Overview:
-      - Getting started?: 'Docs/index.md'
+      - Getting started?: 'docs/index.md'
