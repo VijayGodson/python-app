@@ -78,3 +78,4 @@ jobs:
             --password ${{ secrets.ARGOCD_PASSWORD }}
 
           argocd app sync python-app
+          
