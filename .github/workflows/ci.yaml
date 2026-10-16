@@ -64,8 +64,7 @@ jobs:
       - name: Install argocd-server
         shell: bash
         run: |
-          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/download/3.5.5/argocd-darwin-arm64
- 
+          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/download/v3.5.5/argocd-darwin-arm64
           chmod +x argocd 
           sudo mv ./argocd /usr/local/bin/argocd
 
